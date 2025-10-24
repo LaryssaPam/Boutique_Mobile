@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Category;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Categories extends Component
 {
@@ -13,7 +14,8 @@ class Categories extends Component
      */
     public function __construct()
     {
-        //
+        //    
+       
     }
 
     /**
@@ -21,6 +23,11 @@ class Categories extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.categories');
+        // Recupération de toutes Catégorie à l'aide du model Catégorie
+    
+            $categories = Category::Limit(5)->get();
+        /*dd($categories);*/
+         return view('components.categories',compact('categories'));
+        
     }
 }
